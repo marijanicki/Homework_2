@@ -5,10 +5,18 @@
 using namespace std;
 
 int main(){
-    relog relog();
-    //relog.settime(1);
-   /*
-    relog.min = 9;
-    relog.sec=10;*/
-    relog.print_time();
+    try{
+        relog horario(22,15,124,"a.m");
+        horario.print_time();
+        int a;
+        cin >> a;
+        horario.setmin(a);
+        cout << horario.getmin()<<endl;
+        horario.print_time();
+    }
+    catch(const runtime_error& e){
+        cout<<e.what();
+    }
+
+    
 }

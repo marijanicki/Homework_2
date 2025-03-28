@@ -13,8 +13,14 @@ class relog{
     public:
         relog(int hour = 0, int min = 0, int sec = 0, string meridian = "a.m."); //constructor default
         
-
-        void settime(int h, int m, int s, string med);
+        void sethour(int h);
+        void setmin(int m);
+        void setsec(int s);
+        void setmed(string med);
         int gethour();
+        int getmin();
+        int getsec();
+        string getmed();
+
         void print_time();
 };
