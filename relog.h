@@ -23,4 +23,5 @@ class relog{
         string getmed();
 
         void print_time();
+        void without_med();
 };

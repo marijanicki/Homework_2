@@ -17,16 +17,7 @@ relog::relog(int hour, int min, int sec, string meridian){
     if(hour>=24){
         throw runtime_error("Ingreso de horario inválido, excedido en horas\n");
     }
-/*
-    try{
-        if(hour>=24){
-            throw runtime_error("Ingreso de horario inválido, excedido en horas");
-        }
-    }catch(const runtime_error& e){
-        cout<<e.what();
-        // preguntar como cortar el loop para q no se guarde lo q esta mal
-    }
-*/
+
     if(hour == 12){
         meridian = "p.m.";
     }
@@ -39,7 +30,6 @@ relog::relog(int hour, int min, int sec, string meridian){
     this->min=min;
     this->sec = sec;
     this->meridian = meridian;
-    //cout<<hour <<min <<sec <<endl;
 };
 
 //SETTERS
@@ -74,3 +64,9 @@ void relog::print_time(){
     cout <<setfill('0')<<setw(2) << hour <<"h,"<<setfill('0')<<setw(2) << min <<"m,"<< setfill('0')<<setw(2) << sec <<"s "<<meridian<< endl;
 }
 
+void relog::without_med(){
+    if(meridian == "p.m." && hour != 12){
+        hour = hour +12;
+        meridian = "";
+    }
+}
