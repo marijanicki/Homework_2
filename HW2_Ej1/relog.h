@@ -8,20 +8,20 @@ class relog{
         int hour;
         int min;
         int sec;
-        string meridian;
+        string period;
 
     public:
-        relog(int hour = 0, int min = 0, int sec = 0, string meridian = "a.m."); //constructor default
+        relog(int hour = 0, int min = 0, int sec = 0, string per = "a.m."); //constructor default
         
         void sethour(int h);
         void setmin(int m);
         void setsec(int s);
-        void setmed(string med);
+        void setper(string med);
         int gethour();
         int getmin();
         int getsec();
-        string getmed();
+        string getper();
 
         void print_time();
-        void without_med();
+        void without_per();
 };
