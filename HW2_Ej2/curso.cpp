@@ -12,7 +12,7 @@ curso::curso(string name){
 
 //constructor deep copy
 curso::curso(const curso& other){
-    this->name = other.name;
+    //this->name = other.name;
     for(size_t i = 0; i<other.estudiantes_anotados.size(); i++){
         //copio los estudiantes del original (other) en esta copia
         estudiantes_anotados.push_back(new estudiante(*other.estudiantes_anotados[i]));
@@ -28,8 +28,8 @@ curso& curso::operator =(const curso& other){
             delete estudiantes_anotados[i];
         }
         estudiantes_anotados.clear();
-        name = other.name;
-        for(size_t i = 0;  i<estudiantes_anotados.size();i++){
+        //name = other.name;
+        for(size_t i = 0;  i<other.estudiantes_anotados.size();i++){
             estudiantes_anotados.push_back(new estudiante(*other.estudiantes_anotados[i]));
         }
     }

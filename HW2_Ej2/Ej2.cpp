@@ -22,4 +22,12 @@ int main(){
     Algebra.print_students();
     Algebra.desinscribir(estudiante1);
     Algebra.print_students();
+    curso paradigmas("Paradigmas");
+    paradigmas.print_students();
+    paradigmas = Algebra;
+    paradigmas.print_students();
+    estudiante* zoe = new estudiante("zoui",1902, "Historia", 9);
+    paradigmas.inscribir(zoe);
+    paradigmas.print_students();
+    Algebra.print_students();
 }
