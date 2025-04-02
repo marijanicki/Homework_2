@@ -1,4 +1,4 @@
-#include "estudiante.h"
+#include "estudiante.hpp"
 #include <iostream>
 #include <vector>
 #include <utility>
@@ -26,7 +26,7 @@ string estudiante::getname(){
 int estudiante::getid(){
     return id;
 }
-float estudiante::getmarks(){
+float estudiante::getmarks() const{
    float prom = 0;
     for(size_t i = 0; i<marks.size();i++){
         prom += marks[i].second;
@@ -35,3 +35,11 @@ float estudiante::getmarks(){
     return prom;
 }
 
+bool estudiante::operator<(const estudiante& other)const {
+    return name < other.name;
+}
+
+ostream& operator<<(ostream& ostr, const estudiante& other_student){
+    ostr << "Nombre: "<<other_student.name <<"\nId: "<<other_student.id <<"\nPromedio: " << other_student.getmarks()<<endl;
+    return ostr;
+}
