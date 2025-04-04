@@ -3,13 +3,14 @@
 #include <vector>
 #include <string>
 #include <algorithm>
+#include <memory>
 
 using namespace std;
 
 class curso{
     private:
         string name;
-        vector<estudiante*> estudiantes_anotados; 
+        vector<shared_ptr<estudiante>> estudiantes_anotados; 
         
     public:
         curso(string name);
@@ -23,10 +24,10 @@ class curso{
         //curso& operator =(const curso& other);
 
         //destructor
-        ~curso();
+        //~curso();
 
-        void inscribir(estudiante* data_student);
-        void desinscribir(estudiante* data_student);
+        void inscribir(shared_ptr<estudiante> data_student);
+        void desinscribir(shared_ptr<estudiante> data_student);
         bool is_inscripto(int id);
         bool is_full_capacity();
         void print_students();
