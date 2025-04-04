@@ -3,7 +3,7 @@
 #include <string>
 #include <iostream>
 
-caja_ahorro::caja_ahorro(string titular, double total) : cuenta(titular, "caja de ahorro", total){}
+caja_ahorro::caja_ahorro(string titular, double total) : cuenta(titular, "Caja de ahorro", total){}
 
 void caja_ahorro::retirar(double retiro){
     cout<<"\n"<<retiro<<endl;
@@ -12,6 +12,7 @@ void caja_ahorro::retirar(double retiro){
     }
     else if(retiro == balance()){
         setTotal(0.0);
+        cout<<"Balance"<<balance()<<endl;
     }
     else{
         setTotal((balance()-retiro));

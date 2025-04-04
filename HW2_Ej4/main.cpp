@@ -7,8 +7,9 @@
 
 //sugerencia, agregar leyenda a las operaciones que hago
 int main(){
-    cuenta_cc cuentaC("Juan",152.4);
     caja_ahorro cuentaA("Ana",172);
+    cuenta_cc cuentaC("Juan",152.4, cuentaA);
+    
     //cuentaC.mostrarInfo();
     cuentaA.mostrarInfo();
     //Prueba caja de ahorro

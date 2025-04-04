@@ -19,6 +19,7 @@ curso::curso(const curso& other){
     }
 }
 
+/*
 //sobrecarga operador =
 curso& curso::operator =(const curso& other){
     //reviso q no este asignando a si mismo, sino puedo liberar memoria sin querer
@@ -35,7 +36,7 @@ curso& curso::operator =(const curso& other){
     }
     return *this;
 }
-
+*/
 curso::~curso(){
     for(size_t i=0; i < estudiantes_anotados.size(); i++){
         delete estudiantes_anotados[i];

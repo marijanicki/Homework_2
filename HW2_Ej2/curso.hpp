@@ -12,12 +12,18 @@ class curso{
         vector<estudiante*> estudiantes_anotados; 
         
     public:
-        curso(string name);
+        curso(string name, vector<estudiante*> estudiantes_anotados);
+        //deep copy constructor
+
 
         //copy constructor
         curso(const curso& copia);
+
+        
+
+
         //sobrecarga del operador = para copiar los objetos
-        curso& operator =(const curso& other);
+        //curso& operator =(const curso& other);
 
         //destructor
         ~curso();

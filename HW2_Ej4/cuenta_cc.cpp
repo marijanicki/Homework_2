@@ -4,19 +4,19 @@
 #include <string>
 #include <iostream>
 
-cuenta_cc::cuenta_cc(string titular, double total): cuenta(titular, "cuenta corriente", total){}
+cuenta_cc::cuenta_cc(string titular, double total, caja_ahorro caja_asociada): cuenta(titular, "cuenta corriente", total, caja_asociada){}
 
 void cuenta_cc::retirar(double retiro){
-    setTotal(balance()-retiro);
+    if(balance()<retiro){
+        try{
+            caja_asociada.retirar(retiro);
+        }
+        catch(const runtime_error& e){
+            cout<<e.what()<<endl;
+        }
+    }
 }
 
 void cuenta_cc::mostrarInfo(){
     cout <<"\n------------------------------\n"<<"Tipo de cuenta:"<< getTipoCuenta() <<"\nTitular de la cuenta:"<< titularCuenta() <<"\nBalance:"<<balance()<<"\n------------------------------";
-}
-void cuenta_cc::no_money(caja_ahorro other){
-    cout<<other.balance()<<"           "<<balance()<<endl;
-    if(balance()<=0 && other.balance()<=0){
-        cout<<"Su cuenta no posee más dinero"<<endl;
-    }
-    return;
 }
