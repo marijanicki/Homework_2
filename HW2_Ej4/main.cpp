@@ -7,12 +7,16 @@
 
 //sugerencia, agregar leyenda a las operaciones que hago
 int main(){
-    caja_ahorro cuentaA("Ana",172);
-    cuenta_cc cuentaC("Juan",152.4, cuentaA);
+    caja_ahorro cuentaA;
+    cuenta_cc cuentaC;
     
+    //cuentaC.setcaja_asociada(cuentaA);
     //cuentaC.mostrarInfo();
     cuentaA.mostrarInfo();
     //Prueba caja de ahorro
+    cuentaA.setTitular("Juan");
+    cuentaA.depositar(1000);
+    cuentaA.mostrarInfo();
     try{
         cuentaA.retirar(200);
     }
@@ -33,7 +37,6 @@ int main(){
     cuentaC.mostrarInfo();
     cuentaC.retirar(200);
     cuentaC.mostrarInfo();
-    cuentaC.no_money(cuentaA);
 
     //preguntar si deberia hacer un try en mostrar info en caso de que el saldo sea insuficiente
 }

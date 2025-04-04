@@ -4,7 +4,16 @@
 #include <string>
 #include <iostream>
 
-cuenta_cc::cuenta_cc(string titular, double total, caja_ahorro caja_asociada): cuenta(titular, "cuenta corriente", total, caja_asociada){}
+
+cuenta_cc::cuenta_cc(): cuenta(){
+    this->titular ="";
+    this->tipo_cuenta = "Cuenta Corriente";
+    this->dinero = 0;
+}
+
+void cuenta_cc::setcaja_asociada(caja_ahorro caja_asociada){
+    this->caja_asociada = caja_asociada;
+}
 
 void cuenta_cc::retirar(double retiro){
     if(balance()<retiro){

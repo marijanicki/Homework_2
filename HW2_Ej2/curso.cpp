@@ -19,7 +19,7 @@ curso::curso(const curso& other){
     }
 }
 
-/*
+
 //sobrecarga operador =
 curso& curso::operator =(const curso& other){
     //reviso q no este asignando a si mismo, sino puedo liberar memoria sin querer

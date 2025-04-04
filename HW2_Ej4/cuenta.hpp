@@ -5,7 +5,7 @@ using namespace std;
 
 class cuenta{
     public: 
-        cuenta(string titular, string tipo_cuenta, double total);//constructor
+        cuenta();//constructor
         string getTipoCuenta();
         virtual double balance()const;
         virtual string titularCuenta();
@@ -14,12 +14,14 @@ class cuenta{
         virtual void mostrarInfo()=0; //virtual puro
 
         //setters
-        void setTotal(float new_total);
+        void setTitular(string titular);
+        
+        //getters
 
 
         virtual ~cuenta(); //lo hago virtual así si alguien elimina su cuenta la elimina desde la base y no solo la derivada
-    protected:
+    protect:
+        double dinero;
         string tipo_cuenta;
-        double total;
         string titular;
 };

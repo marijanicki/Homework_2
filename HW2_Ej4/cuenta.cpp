@@ -3,13 +3,13 @@
 
 using namespace std;
 
-cuenta::cuenta(string titular, string tipo, double balance){
-    this->titular =titular;
-    this->tipo_cuenta = tipo;
-    this->total = balance;
+cuenta::cuenta(){
+    this->titular ="";
+    this->dinero = 0;
 }
+
 double cuenta::balance()const{
-    return total;
+    return dinero;
 }
 
 string cuenta::titularCuenta(){
@@ -17,14 +17,16 @@ string cuenta::titularCuenta(){
 }
 
 void cuenta::depositar(double deposito){
-    this->total += deposito;
+    this->dinero += deposito;
     return;
 }
-void cuenta::setTotal(float new_total){
-    this->total = new_total;
-}
+
 string cuenta::getTipoCuenta(){
     return tipo_cuenta;
+}
+
+void cuenta::setTitular(string titularCuenta){
+    this->titular = titular;
 }
 
 cuenta::~cuenta(){}

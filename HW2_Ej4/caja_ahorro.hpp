@@ -4,11 +4,12 @@
 
 class caja_ahorro : public cuenta{
     public:
-        caja_ahorro(string titular, double total);
+        friend class cuenta_cc;
+        caja_ahorro();
         void retirar(double retiro) override;
         void mostrarInfo() override;
-
-        friend class cuenta_cc;
     private:
-        int cant_muestras =0;  
+        int cant_muestras =0; 
+        string titular;
+         
 };
