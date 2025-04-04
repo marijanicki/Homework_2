@@ -7,14 +7,11 @@
 
 //sugerencia, agregar leyenda a las operaciones que hago
 int main(){
-    caja_ahorro cuentaA;
-    cuenta_cc cuentaC;
-    
-    //cuentaC.setcaja_asociada(cuentaA);
-    //cuentaC.mostrarInfo();
-    cuentaA.mostrarInfo();
+    caja_ahorro cuentaA("Juan");
+    cuenta_cc cuentaC("Alberto");
+
     //Prueba caja de ahorro
-    cuentaA.setTitular("Juan");
+    cuentaA.mostrarInfo();
     cuentaA.depositar(1000);
     cuentaA.mostrarInfo();
     try{
@@ -24,14 +21,12 @@ int main(){
             cout<<e.what()<<endl;
     
     }
+    cout<<"\n***************************\n*********** PRUEBA CUENTA CORRIENTE *************"<<endl;
     //prueba del descuento despues de mostrar 2 veces
     cuentaA.mostrarInfo();
     cuentaA.mostrarInfo();
-    cuentaA.depositar(105.6);
-    cuentaA.mostrarInfo(); //tener en cuenta que se van a ver como que se sumaron 80 ya que me descuentan 20 de la impresion
-    cuentaA.retirar(120.7);
-    cuentaA.mostrarInfo();
-    cuentaA.retirar(96.9);
+
+
     //Prueba cuenta corriente
     cout<<"CUENTA CORRIENTE *********************"<<endl;
     cuentaC.mostrarInfo();

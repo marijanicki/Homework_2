@@ -12,11 +12,11 @@ class curso{
         vector<estudiante*> estudiantes_anotados; 
         
     public:
-        curso(string name, vector<estudiante*> estudiantes_anotados);
+        curso(string name);
         //deep copy constructor
     
         //copy constructor
-        curso(const curso& copia): copia.estudiantes_anotados;
+        curso(string name, const curso& copia);
 
 
         //sobrecarga del operador = para copiar los objetos

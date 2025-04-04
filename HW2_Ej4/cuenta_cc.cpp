@@ -5,11 +5,7 @@
 #include <iostream>
 
 
-cuenta_cc::cuenta_cc(): cuenta(){
-    this->titular ="";
-    this->tipo_cuenta = "Cuenta Corriente";
-    this->dinero = 0;
-}
+cuenta_cc::cuenta_cc(string titular): cuenta(titular, "Cuenta Corriente", 0.0){}
 
 void cuenta_cc::setcaja_asociada(caja_ahorro caja_asociada){
     this->caja_asociada = caja_asociada;

@@ -3,6 +3,7 @@
 #include <iostream>
 #include <vector>
 #include<string>
+#include <memory>
 
 using namespace std;
 
@@ -10,6 +11,12 @@ curso::curso(string name){
     this->name = name;
 }
 
+curso::curso(string name, const curso& other){
+    this->name = name;
+    this->estudiantes_anotados = other.estudiantes_anotados;
+};
+
+/*
 //constructor deep copy
 curso::curso(const curso& other){
     //this->name = other.name;
@@ -18,8 +25,9 @@ curso::curso(const curso& other){
         estudiantes_anotados.push_back(new estudiante(*other.estudiantes_anotados[i]));
     }
 }
+*/
 
-
+/*
 //sobrecarga operador =
 curso& curso::operator =(const curso& other){
     //reviso q no este asignando a si mismo, sino puedo liberar memoria sin querer

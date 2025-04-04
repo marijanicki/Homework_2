@@ -3,11 +3,13 @@
 
 using namespace std;
 
-cuenta::cuenta(){
-    this->titular ="";
-    this->dinero = 0;
-}
+cuenta::cuenta(){}
 
+cuenta::cuenta(string titular, string tipo, double balance){
+    this->titular =titular;
+    this->tipo_cuenta = tipo;
+    this->dinero = balance;
+}
 double cuenta::balance()const{
     return dinero;
 }
@@ -25,8 +27,5 @@ string cuenta::getTipoCuenta(){
     return tipo_cuenta;
 }
 
-void cuenta::setTitular(string titularCuenta){
-    this->titular = titular;
-}
 
 cuenta::~cuenta(){}
