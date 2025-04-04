@@ -23,5 +23,5 @@ void cuenta_cc::retirar(double retiro){
 }
 
 void cuenta_cc::mostrarInfo(){
-    cout <<"\n------------------------------\n"<<"Tipo de cuenta:"<< getTipoCuenta() <<"\nTitular de la cuenta:"<< titularCuenta() <<"\nBalance:"<<balance()<<"\n------------------------------";
+    cout <<"\n------------------------------\n"<<"Datos cuenta:\n\nTipo de cuenta:"<< getTipoCuenta() <<"\nTitular de la cuenta:"<< titularCuenta() <<"\nBalance:"<<balance()<<"\n\n------------------------------";
 }

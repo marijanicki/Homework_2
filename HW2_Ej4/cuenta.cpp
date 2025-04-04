@@ -1,6 +1,6 @@
 #include "cuenta.hpp"
 #include <string>
-
+#include <iostream>
 using namespace std;
 
 cuenta::cuenta(){}
@@ -19,6 +19,9 @@ string cuenta::titularCuenta(){
 }
 
 void cuenta::depositar(double deposito){
+    if(deposito >0){
+        cout<<"\n\nDeposito: "<<deposito<<endl;
+    }
     this->dinero += deposito;
     return;
 }
