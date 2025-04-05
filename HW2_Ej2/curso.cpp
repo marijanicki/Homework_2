@@ -54,10 +54,18 @@ void curso::inscribir(shared_ptr<estudiante> data_student){
     }
     //throw runtime_error("Capacidad de alumnos llena");
 }
+
+
+
+
 void curso::desinscribir(shared_ptr<estudiante> data_student){
     if(estudiantes_anotados.size() == 0){
-        //throw runtime_error("No hay alumnos en el curso. No se puede desinscribir");
+        throw runtime_error("No hay alumnos en el curso. No se puede desinscribir");
     }
+
+    if()
+
+
     //find the pos of the student
     for(size_t i = 0; i<estudiantes_anotados.size(); i++){
         if(data_student->getname() == estudiantes_anotados[i]->getname()){
@@ -65,6 +73,7 @@ void curso::desinscribir(shared_ptr<estudiante> data_student){
             return;
         }
     }
+    cout<<"El estudiante no se encuentra inscripto en el curso";
 }
 bool curso::is_inscripto(int id){
     for(size_t i = 0; i<estudiantes_anotados.size(); i++){

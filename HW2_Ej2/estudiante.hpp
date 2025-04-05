@@ -12,8 +12,6 @@ class estudiante{
     public:
         estudiante(string name, int id, string curso, int marks);
         //SETTERS
-        void setname(string name);
-        void setid(int id);
         void setmarks(string curso, int mark);
 
         //GETTERS

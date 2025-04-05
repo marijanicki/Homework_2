@@ -6,7 +6,7 @@
 using namespace std;
 
 int main(){
-    shared_ptr estudiante1 = make_shared<estudiante>("Maxi", 36355, "Análisis 2", 2);
+    shared_ptr estudiante1 = make_shared<estudiante>("Maximo Perez", 36355, "Análisis 2", 2);
 
 
     shared_ptr stud1 = make_shared<estudiante>("Luca", 1025, "Análisis 1", 5);

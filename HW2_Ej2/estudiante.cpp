@@ -9,12 +9,7 @@ estudiante::estudiante(string name, int id, string curso, int mark){
     this->marks.push_back(make_pair(curso, mark));  
 }
 //SETTERS 
-void estudiante::setname(string name){
-    this->name = name;
-}
-void estudiante::setid(int id){
-    this->id = id;
-}
+
 void estudiante::setmarks(string curso, int mark){
     this->marks.push_back(make_pair(curso,mark));
 }
