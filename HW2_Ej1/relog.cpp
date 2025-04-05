@@ -1,4 +1,4 @@
-#include "relog.h"
+#include "relog.hpp"
 #include <iostream>
 #include <string> 
 #include <iomanip>
@@ -61,7 +61,7 @@ string relog::getper(){
 }
 
 void relog::print_time(){
-    if(hour == 0 && min == 0 && sec == 0 && period == "a.m"){
+    if(hour == 0 && min == 0 && sec == 0 && period == "a.m."){
         cout << hour <<"h,"<< min <<"m,"<< sec <<"s "<<period<< endl;
     }
     else{
