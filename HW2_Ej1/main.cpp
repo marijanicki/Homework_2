@@ -194,10 +194,14 @@ int main(){
                                 break;
                             case 2:
                                 valid= true;
+                                cout <<"c"<<endl;
                                 while(valid){
+                                    cout <<"b"<<endl;
                                     try{
+                                        cout <<"a"<<endl;
                                         min = valid_input("Ingrese la cantidad de minutos:");
                                         horario1.setmin(min);
+                                        cout <<"a"<<endl;
                                         valid = false;
                                     }
                                     catch(const runtime_error& e){
@@ -281,8 +285,8 @@ int main(){
                 }
                 break;
             case OPCIONES::h: 
-                horario5.without_per();
-                horario5.print_time();
+                horario1.without_per();
+                horario1.print_time();
                 break;
 
             case OPCIONES::invalid:
