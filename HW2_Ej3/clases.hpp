@@ -28,7 +28,7 @@ class real: public numero{
         shared_ptr<numero> resta(shared_ptr<numero> a, shared_ptr<numero> b) override;
         shared_ptr<numero> mult(shared_ptr<numero> a, shared_ptr<numero> b)override;
         string toString(shared_ptr<numero> a)override;
-        virtual  ~real(){}; //preg xq es q hay que agregar el destructor
+        virtual  ~real(){}; 
         
 };
 

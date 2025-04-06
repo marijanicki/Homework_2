@@ -34,7 +34,7 @@ void curso::desinscribir(shared_ptr<estudiante> data_student){
         throw runtime_error("No hay alumnos en el curso. No se puede desinscribir");
     }
 
-    //find the pos of the student
+    //busco la pos del estudiante
     for(size_t i = 0; i<estudiantes_anotados.size(); i++){
         if(data_student->getname() == estudiantes_anotados[i]->getname()){
             estudiantes_anotados.erase(estudiantes_anotados.begin()+i);//uso begin ya que erase necesita un iterador, le sumo i así accedo a la pos q quiero

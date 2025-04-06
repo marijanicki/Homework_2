@@ -6,8 +6,7 @@
 using namespace std;
 
 int main(){
-    //prueba de enteros
-
+    cout<<"Enteros"<<endl;
     shared_ptr<numero> a = make_shared<entero>(-10);
     shared_ptr<numero> b = make_shared<entero>(5);
     entero prueba;
@@ -18,7 +17,7 @@ int main(){
     shared_ptr<numero> res3 = prueba.mult(a,b);
     cout << dynamic_cast<entero*>(res3.get())->toString(res3)<<endl;
 
-    cout<<"REALES"<<endl;
+    cout<<"Reales"<<endl;
     shared_ptr<numero> num1 = make_shared<real>(-10.5);
     shared_ptr<numero> num2 = make_shared<real>(5);
     real realestry;
@@ -31,7 +30,7 @@ int main(){
     shared_ptr<numero> res_3 = realestry.mult(num1,num2);
     cout << dynamic_cast<real*>(res_3.get())->toString(res_3)<<endl;
 
-    cout<<"complejos"<<endl;
+    cout<<"Complejos"<<endl;
     shared_ptr<numero> complex1 = make_shared<complejo>(10.5,2);
     shared_ptr<numero> complex2 = make_shared<complejo>(2,3.7);
     complejo complex;

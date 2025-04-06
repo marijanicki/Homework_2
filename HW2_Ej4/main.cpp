@@ -55,5 +55,4 @@ int main(){
     cuentaC.retirar(1000);
     cuentaC.mostrarInfo();
 
-    //preguntar si deberia hacer un try en mostrar info en caso de que el saldo sea insuficiente
 }
