@@ -14,19 +14,16 @@ cursos al que esta inscripto.
 */
 
 /*
-Hice una copia deep copy. Esto es debido a que estamos alocando memoria y si nosotros 
-copiamos los estudiantes de un curso a otro simplemente apuntando a ellos mediante
-punteros pasaría que si yo elimino un estudiante se eliminaría de los dos. Y nosotros
-lo que buscamos es simplemente copiar como se encuentra el curso en ese momento que se
-copia y luego simplemente que sean dos cursos independientes que puedan inscribir y 
-desinscribir a los estudiantes que quieran. Si se hiciera por referencia sucederia lo que
-mencione anteriormente que estarían ligadas en cuanto a sus alumnos y siempre serían iguales
-en cuanto a desinscribir.
-
-Para realizarlo lo que hice fue hacer un constructor especifico para la copia.
-A diferencia del constructor que uso para todas los objetos curso, a este le pido 
-a su vez el objeto curso que quiero copiar. En la implementación del constructor
-lo que hice fue 
+Hice una copia shallow copy. Esto es debido a que a pesar de estar alocando 
+memoria yo no necesito volver a crear el objeto de los estudiantes para 
+el nuevo curso.Es decir, lo que hice fue crear un nuevo objeto curso 
+al cual hice que su vector de alumnos apunte al vector de alumnos del
+curso que estoy copiando. Si fuera deep copy deberia crear nuevos estudiantes
+y un nuevo vector a los cuales asignarlos a mi nuevo vector de estudiantes.
+A pesar de estar manejado de esta manera, luego de copiar los cursos modificar 
+un alumno de alguna de las clases luego de la copia no se afecta
+la original. Es decir yo puedo inscribir y desincribir alumnos de las
+clases sin problema luego de la copia.
 */
 
 void show_curso(vector <curso> lista_cursos){
@@ -58,10 +55,7 @@ int main(){
     shared_ptr estudiante19 = make_shared<estudiante>("Lautaro Caminos", 3635, "Análisis 2", 2);
     shared_ptr estudiante20 = make_shared<estudiante>("Santiago Porcel", 3482, "Análisis 2", 2);
     shared_ptr estudiante21 = make_shared<estudiante>("Benjamín Mccabe", 21603, "Análisis 2", 2);
-    /*
-    shared_ptr<curso> Algebra = make_shared<curso>("Algebra");
-    shared_ptr<curso> Literatura = make_shared<curso>("Literatura");
-    */
+
     curso Algebra("Algebra");
     curso Literatura("Literatura");
     vector <shared_ptr<estudiante>> lista_estudiantes = {estudiante1, estudiante2, estudiante3, estudiante4, estudiante5, estudiante6, estudiante7, estudiante8, estudiante9, estudiante10, estudiante11, estudiante12, estudiante13, estudiante14, estudiante15, estudiante16, estudiante17, estudiante18, estudiante19, estudiante20, estudiante21};
@@ -74,54 +68,39 @@ int main(){
     string signature;
     char salir;
     while(menu){
-        try{
-            cout<<"Elija la operación que desea realizar:\n"
-                <<"1.Ver nombre completo del estudiante\n"
-                <<"2.Ver numero de legajo del estudiante\n"
-                <<"3.Ver promedio del estudiante\n"
-                <<"4.Ingresar materia cursada por el alumno con su nota final\n"
-                <<"5.SALIR"<<endl;
-            cin>>op;
-            if(typeid(op) != typeid(int)){
-                throw runtime_error("Ingreso tipo de dato inválido. Pruebe nuevamente");
-            }
-            if(op>5){
-                cout << "Ingreso una opción incorrecta"<<endl;
-                continue;
-            }
-            switch (op)
-            {
-            case 1:
-                cout << estudiante1->getname()<<endl;
-                break;
-            case 2:
-                cout <<estudiante1->getid()<<endl;
-                break;
-            case 3: 
-                cout<<estudiante1->getmarks()<<endl;
-            case 4:
-                try{
-                    cout << "Nombre de materia y promedio: ";
-                    cin>>signature>>nota;
-                    if(typeid(signature) != typeid(string) || typeid(nota) != typeid(int)){
-                        throw runtime_error("Ingreso un tipo de dato invalido en el nombre de la materia o la nota");
-                    }
-                    estudiante1->setmarks(signature, nota);
-                    break;
-                }
-                catch(const runtime_error& e){
-                    cout <<"Runtime error:"<< e.what()<<endl;
-                }
-            case 5:
-                break;
-            default:
-                cout << "Ingreso un comando inválido"<<endl;
-            }
+        cout<<"Elija la operación que desea realizar:\n"
+            <<"1.Ver nombre completo del estudiante\n"
+            <<"2.Ver numero de legajo del estudiante\n"
+            <<"3.Ver promedio del estudiante\n"
+            <<"4.Ingresar materia cursada por el alumno con su nota final\n"
+            <<"5.SALIR"<<endl;
+        cin>>op;
+        if(op>5){
+            cout << "Ingreso una opción incorrecta"<<endl;
+            continue;
         }
-        catch(const runtime_error& e){
-            cout << "Runtime error: "<<e.what()<<endl;
+        switch (op)
+        {
+        case 1:
+            cout << estudiante1->getname()<<endl;
+            break;
+        case 2:
+            cout <<estudiante1->getid()<<endl;
+            break;
+        case 3: 
+            cout<<estudiante1->getmarks()<<endl;
+            break;
+        case 4:
+            cout << "Nombre de materia y promedio: ";
+            cin>>signature>>nota;
+            estudiante1->setmarks(signature, nota);
+            break;
+        case 5:
+            break;
+        default:
+            cout << "Ingreso un comando inválido"<<endl;
         }
-
+        
         try{
             cout << "¿Desea realizar otra operación? Y/N\n";
             cin >>salir;
@@ -169,7 +148,7 @@ int main(){
                 cout << "Ingreso una opción incorrecta"<<endl;
                 continue;
             }
-
+            //no lo hice dentro del switch porque no puedo crear variables dentro del mismo.
             if(op == 6){
                 lista_cursos[0].print_students();
                 curso Paradigmas = curso("Paradigmas", lista_cursos[0]);
@@ -190,7 +169,7 @@ int main(){
                             
                             show_curso(lista_cursos);
                             cin>>num_curso;
-                            if(num_curso <0 || static_cast<size_t>(num_curso) >lista_cursos.size()){
+                            if(num_curso <0 || static_cast<size_t>(num_curso) >=lista_cursos.size()){
                                 cout<<"Ingreso un numero fuera de rango. Intente nuevamente."<<endl;
                                 continue;
                             }
@@ -220,7 +199,7 @@ int main(){
                         }
                         show_curso(lista_cursos);
                         cin>>num_curso;
-                        if(num_curso <0 || static_cast<size_t>(num_curso) >lista_cursos.size()){
+                        if(num_curso <0 || static_cast<size_t>(num_curso) >=lista_cursos.size()){
                             cout<<"Ingreso un numero fuera de rango. Intente nuevamente."<<endl;
                             continue;
                         }
@@ -246,7 +225,7 @@ int main(){
                         }
                         show_curso(lista_cursos);
                         cin>>num_curso;
-                        if(num_curso <0 || static_cast<size_t>(num_curso) >lista_cursos.size()){
+                        if(num_curso <0 || static_cast<size_t>(num_curso) >=lista_cursos.size()){
                             cout<<"Ingreso un numero fuera de rango. Intente nuevamente."<<endl;
                             continue;
                         }
@@ -259,7 +238,7 @@ int main(){
                     while (valid){
                         show_curso(lista_cursos);
                         cin>>num_curso;
-                        if(num_curso <0 || static_cast<size_t>(num_curso) >lista_cursos.size()){
+                        if(num_curso <0 || static_cast<size_t>(num_curso) >=lista_cursos.size()){
                             cout<<"Ingreso un numero fuera de rango. Intente nuevamente."<<endl;
                             continue;
                         }
@@ -276,7 +255,7 @@ int main(){
                     while (valid){
                         show_curso(lista_cursos);
                         cin>>num_curso;
-                        if(num_curso <0 || static_cast<size_t>(num_curso) >lista_cursos.size()){
+                        if(num_curso <0 || static_cast<size_t>(num_curso) >=lista_cursos.size()){
                             cout<<"Ingreso un numero fuera de rango. Intente nuevamente."<<endl;
                             continue;
                         }
@@ -293,10 +272,6 @@ int main(){
                 
                     
             }
-        //no se puede hacer dentro del switch porque no se pueden crear variables dentro
-        
-            
-        
         
         try{
             cout << "¿Desea realizar otra operación? Y/N\n";

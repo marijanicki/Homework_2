@@ -59,6 +59,10 @@ void reloj::setmin(int m){
         temp_h += (m/60);
         temp_m = m%60;
     }
+    else{
+        this->min = m;
+        return;
+    }
     if(temp_h>=24){
         throw runtime_error("Ingreso de horario inválido, excedido en horas\n");
     }
@@ -82,6 +86,10 @@ void reloj::setsec(int s){
     if(s>=60){
         temp_m += (s/60);
         temp_s = s %60;
+    }
+    else{
+        this->sec = s;
+        return;
     }
     if(temp_m>=60){
         temp_h += (temp_m/60);
@@ -134,6 +142,9 @@ void reloj::print_time(){
 void reloj::without_per(){
     if(period == "p.m." && hour != 12){
         hour = hour +12;
+        period = "";
+    }
+    if(period == "a.m."){
         period = "";
     }
 }

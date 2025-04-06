@@ -24,6 +24,5 @@ class estudiante{
         bool operator<(const estudiante& other)const;
         //quiero que << acceda a los atributos del estudiante por eso lo declaro como friend(es privado sino no podría)
         friend ostream& operator<<(ostream& ostr, const estudiante& other_student);
-        //preguntar pq en este caso no va el const al final
         
 };

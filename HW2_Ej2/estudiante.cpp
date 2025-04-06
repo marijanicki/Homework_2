@@ -30,6 +30,7 @@ float estudiante::getmarks() const{
     return prom;
 }
 
+//sobrecarga operadores
 bool estudiante::operator<(const estudiante& other)const {
     return name < other.name;
 }

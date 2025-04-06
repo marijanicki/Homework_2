@@ -50,6 +50,8 @@ int main(){
     cuentaC.mostrarInfo();
     cuentaC.depositar(100);
     cuentaC.mostrarInfo();
+    cuentaC.retirar(20);
+    cuentaC.mostrarInfo();
     cuentaC.retirar(1000);
     cuentaC.mostrarInfo();
 

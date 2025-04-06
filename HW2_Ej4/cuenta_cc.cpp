@@ -20,6 +20,9 @@ void cuenta_cc::retirar(double retiro){
             cout<<e.what()<<endl;
         }
     }
+    else{
+        depositar(-retiro);
+    }
 }
 
 void cuenta_cc::mostrarInfo(){

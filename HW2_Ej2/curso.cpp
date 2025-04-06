@@ -21,18 +21,6 @@ string curso::getname(){
     return name;
 }
 
-/*
-//constructor deep copy
-curso::curso(const curso& other){
-    //this->name = other.name;
-    for(size_t i = 0; i<other.estudiantes_anotados.size(); i++){
-        //copio los estudiantes del original (other) en esta copia
-        estudiantes_anotados.push_back(new estudiante(*other.estudiantes_anotados[i]));
-    }
-}
-*/
-
-
 void curso::inscribir(shared_ptr<estudiante> data_student){
     if(!is_full_capacity()){
         estudiantes_anotados.push_back(data_student);
@@ -82,7 +70,3 @@ void curso::print_students(){
     cout <<"---------------------------------"<<endl; 
 }
 
-/*
-    for (const auto& estudiante : estudiantes_anotados) {
-        cout << *estudiante << endl; // Usar el operador << sobrecargado
-    }*/
