@@ -19,6 +19,8 @@ class curso{
         //copy constructor
         curso(string name, const curso& copia);
 
+        string getname();
+
 
         //sobrecarga del operador = para copiar los objetos
         //curso& operator =(const curso& other);

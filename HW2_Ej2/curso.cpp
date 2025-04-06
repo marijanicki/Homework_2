@@ -17,6 +17,10 @@ curso::curso(string name, const curso& other){
     
 };
 
+string curso::getname(){
+    return name;
+}
+
 /*
 //constructor deep copy
 curso::curso(const curso& other){
@@ -52,7 +56,7 @@ void curso::inscribir(shared_ptr<estudiante> data_student){
         estudiantes_anotados.push_back(data_student);
         return;
     }
-    //throw runtime_error("Capacidad de alumnos llena");
+    throw runtime_error("Capacidad de alumnos llena");
 }
 
 
@@ -63,9 +67,6 @@ void curso::desinscribir(shared_ptr<estudiante> data_student){
         throw runtime_error("No hay alumnos en el curso. No se puede desinscribir");
     }
 
-    if()
-
-
     //find the pos of the student
     for(size_t i = 0; i<estudiantes_anotados.size(); i++){
         if(data_student->getname() == estudiantes_anotados[i]->getname()){
@@ -73,14 +74,16 @@ void curso::desinscribir(shared_ptr<estudiante> data_student){
             return;
         }
     }
-    cout<<"El estudiante no se encuentra inscripto en el curso";
+    //no hace nada porque no esta inscripto
 }
 bool curso::is_inscripto(int id){
     for(size_t i = 0; i<estudiantes_anotados.size(); i++){
         if(id == estudiantes_anotados[i]->getid()){
+            cout << "Se encuentra inscripto"<<endl;
             return true;
         }
     }
+    cout<<"El estudiante no se encuentra inscripto en el curso\n";
     return false;
 }
 bool curso::is_full_capacity(){
@@ -92,7 +95,7 @@ bool curso::is_full_capacity(){
 
 void curso::print_students(){
     sort(estudiantes_anotados.begin(), estudiantes_anotados.end(), [](shared_ptr<estudiante> a, shared_ptr<estudiante> b)->bool {return *a < *b;});//sort no retorna
-    cout<<name<<endl;
+    cout<<"\n"<<name<<endl;
 
     for(size_t i = 0; i<estudiantes_anotados.size();i++){
         cout<< *estudiantes_anotados[i]<<endl;
