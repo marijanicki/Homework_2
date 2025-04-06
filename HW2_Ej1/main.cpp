@@ -287,8 +287,6 @@ int main(){
             case OPCIONES::h:
                 horario1.without_per();
                 horario1.print_time();
-                
-                horario1.setper("a.m.");//para que no quede sin el periodo le dejamos el default
                 break;
 
             case OPCIONES::invalid:
