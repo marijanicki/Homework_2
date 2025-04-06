@@ -2,6 +2,7 @@
 #include <iostream>
 #include <string> 
 #include <typeinfo>
+#include <limits>
 
 using namespace std;
 enum class OPCIONES: uint8_t{a,b,c,d,e,f,g,h,invalid};
@@ -75,6 +76,39 @@ string enum_to_str(PERIODO period){
     }
 }
 
+int valid_input(string leyend){
+    int value;
+    cout<<leyend<<" ";
+    cin>>value;                           
+    if(cin.fail()){
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        throw runtime_error("Ingresó un tipo de dato inválido.\n");
+    }
+    else{
+        return value;
+    }
+}
+
+bool intento(string leyend){
+    char salir;
+    while(true){
+        cout << leyend <<endl;
+        cin >>salir;
+        if(salir == 'N' || salir == 'n'){
+            cout << "Cerrando...";
+            return false;
+        }
+        else if(salir == 'Y' || salir == 'y'){
+            return true;
+            
+        }
+        else{
+            cout <<" Ingreso una opción incorrecta. Vuelva a intentarlo"<<endl;
+            
+        }
+    }
+}
 int main(){
     int horas;
     int min;
@@ -83,7 +117,7 @@ int main(){
     string op;
     OPCIONES num_op;
     bool valid = true;
-    char salir;
+    
     reloj horario1;
     reloj horario2(1);
     reloj horario3(1,1);
@@ -121,72 +155,82 @@ int main(){
                 horario5.print_time();
                 break;
             case OPCIONES::f:
-                horario5.print_time();
+                horario1.print_time();
+                break;
             case OPCIONES::g: 
                 int op_sets;
                 valid = true;
                 while(valid){ 
                     try{
                         cout <<"Elija los parametro que desea ingresar o imprimir del reloj"<<endl;
-                        cout <<"1.Ingresar hora\n2.Ingresar minutos\n3.Ingresar segundos\n4.Ingresar periodo.\n5.Leer hora\n6.Leer minutos\n7.Leer segundos\n8.Leer periodo"<<endl;
+                        cout <<"1.Ingresar hora\n2.Ingresar minutos\n3.Ingresar segundos\n4.Ingresar periodo.\n5.Leer hora\n6.Leer minutos\n7.Leer segundos\n8.Leer periodo\n9.SALIR"<<endl;
                         cin>>op_sets;
-                        if( typeid(op_sets) != typeid(int)){
-                            throw runtime_error("Opción inválida");
-                        }
                         switch(op_sets){
                             case 1:
                                 valid= true;
                                 while(valid){
                                     try{
-                                        cout<<"Ingrese la cantidad de horas:"<<" ";
-                                        cin>>horas;
-                                        if(typeid(horas) != typeid(int)){
-                                            throw runtime_error("Ingreso un tipo de dato inválido. Intente nuevamente.\n");
+                                        horas = valid_input("Ingrese la cantidad de horas:");
+                                        try{
+                                            horario1.sethour(horas);
+                                            valid = false;
                                         }
-                                        horario5.sethour(horas);
+                                        catch(const runtime_error& e){
+                                            cout << "Runtime error: " <<e.what() <<endl;
+                                        }
                                         
                                     }
                                     catch(const runtime_error& e){
                                         cout << "Runtime error: " <<e.what() <<endl;
+                                        try{
+                                            valid = intento("Desea volver a intentarlo? Y/N");
+                                        }
+                                        catch(const runtime_error& f){
+                                            cout << f.what()<<endl;
+                                        }
                                     }
-                                    valid = false;
+                                    cin.clear();
                                 }
                                 break;
                             case 2:
                                 valid= true;
                                 while(valid){
                                     try{
-                                        cout<<"Ingrese la cantidad de minutos:"<<" ";
-                                        cin>>min;
-                                        if(typeid(min) != typeid(int)){
-                                            throw runtime_error("Ingreso un tipo de dato inválido. Intente nuevamente.");
-                                        }
-                                        horario5.setmin(min);
+                                        min = valid_input("Ingrese la cantidad de minutos:");
+                                        horario1.setmin(min);
+                                        valid = false;
                                     }
                                     catch(const runtime_error& e){
                                         cout << "Runtime error: " <<e.what() <<endl;
+                                        try{
+                                            valid = intento("Desea volver a intentarlo? Y/N");
+                                           }
+                                        catch(const runtime_error& f){
+                                            cout << f.what()<<endl;
+                                        }
                                     }
-                                    valid = false;
-                                }
+                                    cin.clear();
+                                    }
                                 break;    
                             case 3:
                                 valid= true;
                                 while(valid){
                                     try{
-                                        cout<<"Ingrese la cantidad de segundos:"<<" ";
-                                        cin>>sec;
-                                        if(typeid(sec) != typeid(int)){
-                                            throw runtime_error("Ingreso un tipo de dato inválido. Intente nuevamente.");
-                                        }
-                                        horario5.setsec(sec);
-                                        
+                                        sec = valid_input("Ingrese la cantidad de segundos:");
+                                        horario1.setsec(sec);
+                                        valid = false;
                                     }
                                     catch(const runtime_error& e){
                                         cout << "Runtime error: " <<e.what() <<endl;
+                                        try{
+                                            valid = intento("Desea volver a intentarlo? Y/N");
+                                        }
+                                        catch(const runtime_error& f){
+                                            cout << f.what()<<endl;
+                                        }
                                     }
-                                    valid = false;
-                                }
-
+                                    cin.clear();
+                                    }
                                 break;
                             case 4:
                                 valid= true;
@@ -194,35 +238,39 @@ int main(){
                                     try{
                                         cout<<"Ingrese el periodo del día:"<<" ";
                                         cin>>period;
-                                        if(typeid(period) != typeid(string)){
-                                            throw runtime_error("Ingreso un tipo de dato inválido. Intente nuevamente.");
-                                        }
                                         PERIODO num_per = make_enum_period(period);
-                                        if(num_per != PERIODO::invalid){
+                                        if(num_per == PERIODO::invalid){
                                             cout<<"Periodo inválido. Intentelo nuevamente"<<endl;
                                             continue;
                                         }
-                                        
-                                        horario5.setper(enum_to_str(num_per));
-                                        
+                                        horario1.setper(enum_to_str(num_per));
+                                        valid = false;
                                     }
                                     catch(const runtime_error& e){
                                         cout << "Runtime error: " <<e.what() <<endl;
+                                        try{
+                                            valid = intento("Desea volver a intentarlo? Y/N");
+                                        }
+                                        catch(const runtime_error& f){
+                                            cout << f.what()<<endl;
+                                        }
                                     }
-                                    valid = false;
+                                    cin.clear();
                                 }
                                 break;
                             case 5:
-                                cout <<horario5.gethour()<<endl;
+                                cout <<horario1.gethour()<<endl;
                                 break;
                             case 6:
-                                cout<<horario5.getmin()<<endl;
+                                cout<<horario1.getmin()<<endl;
                                 break;
                             case 7:
-                                cout<<horario5.getsec()<<endl;
+                                cout<<horario1.getsec()<<endl;
                                 break;
                             case 8:
-                                cout<<horario5.getper()<<endl;
+                                cout<<horario1.getper()<<endl;
+                                break;
+                            case 9:
                                 break;
                         }   
                         valid = false;    
@@ -244,22 +292,7 @@ int main(){
                 cout <<"Ingreso una opción inválida. Intentelo de nuevo"<<endl;
         }
         try{
-            cout << "¿Desea realizar otra operación? Y/N\n";
-            cin >>salir;
-            if(salir == 'N' || salir == 'n'){
-                cout << "Cerrando...";
-                valid = false;
-            }
-            else if(salir == 'Y' || salir == 'y'){
-                valid = true;
-                continue;
-            }
-            else if(typeid(salir) != typeid(string)){
-                throw runtime_error("Ingreso un tipo de dato");
-            }
-            else{
-                cout << "Ingreso una opción incorrecta. Vuelva a intentarlo"<<endl;
-            }
+            valid = intento("¿Desea realizar otra operación? Y/N");
         }
         catch(const runtime_error& f){
             cout << f.what()<<endl;

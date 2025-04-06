@@ -34,13 +34,54 @@ reloj::reloj(int hour, int min, int sec, string period){
 
 //SETTERS
 void reloj::sethour(int h){
-    hour = h;
+    if(hour>=24){
+        throw runtime_error("Ingreso de horario inválido, excedido en horas\n");
+    }
+    if(hour == 12){
+        period = "p.m.";
+    }
+    else if(hour>12){
+        hour = (hour % 12);
+        period = "p.m.";
+    }
 }
 void reloj::setmin(int m){
-    min = m;
+    if(min>=60){
+        hour = hour + (min/60);
+        min = min%60;
+    }
+    if(hour>=24){
+        throw runtime_error("Ingreso de horario inválido, excedido en horas\n");
+    }
+    
+    if(hour == 12){
+        period = "p.m.";
+    }
+    else if(hour>12){
+        hour = (hour % 12);
+        period = "p.m.";
+    }
 }
 void reloj::setsec(int s){
-    sec = s;
+    if(sec>=60){
+        min = min + (sec/60);
+        sec = sec %60;
+    }
+    if(min>=60){
+        hour = hour + (min/60);
+        min = min%60;
+    }
+    if(hour>=24){
+        throw runtime_error("Ingreso de horario inválido, excedido en horas\n");
+    }
+    
+    if(hour == 12){
+        period = "p.m.";
+    }
+    else if(hour>12){
+        hour = (hour % 12);
+        period = "p.m.";
+    }
 }
 void reloj::setper(string per){
     period = per;
