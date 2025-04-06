@@ -14,19 +14,11 @@ class curso{
         
     public:
         curso(string name);
-        //deep copy constructor
     
-        //copy constructor
+        //deep copy constructor
         curso(string name, const curso& copia);
 
         string getname();
-
-
-        //sobrecarga del operador = para copiar los objetos
-        //curso& operator =(const curso& other);
-
-        //destructor
-        //~curso();
 
         void inscribir(shared_ptr<estudiante> data_student);
         void desinscribir(shared_ptr<estudiante> data_student);

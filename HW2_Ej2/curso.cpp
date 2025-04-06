@@ -32,24 +32,6 @@ curso::curso(const curso& other){
 }
 */
 
-/*
-//sobrecarga operador =
-curso& curso::operator =(const curso& other){
-    //reviso q no este asignando a si mismo, sino puedo liberar memoria sin querer
-    if(this != &other){
-        //en caso de que este ya tenga estudiantes asignados los borro asi no tengo leaks
-        for(size_t i=0; i < estudiantes_anotados.size(); i++){
-            delete estudiantes_anotados[i];
-        }
-        estudiantes_anotados.clear();
-        //name = other.name;
-        for(size_t i = 0;  i<other.estudiantes_anotados.size();i++){
-            estudiantes_anotados.push_back(new estudiante(*other.estudiantes_anotados[i]));
-        }
-    }
-    return *this;
-}
-*/
 
 void curso::inscribir(shared_ptr<estudiante> data_student){
     if(!is_full_capacity()){
@@ -58,9 +40,6 @@ void curso::inscribir(shared_ptr<estudiante> data_student){
     }
     throw runtime_error("Capacidad de alumnos llena");
 }
-
-
-
 
 void curso::desinscribir(shared_ptr<estudiante> data_student){
     if(estudiantes_anotados.size() == 0){

@@ -64,6 +64,26 @@ int main(){
 
 
             }
+            try{
+            cout << "¿Desea realizar otra operación? Y/N\n";
+            cin >>salir;
+            if(salir == 'N' || salir == 'n'){
+                cout << "Cerrando...";
+                menu = false;
+            }
+            else if(salir == 'Y' || salir == 'y'){
+                continue;
+            }
+            else if(typeid(salir) != typeid(string)){
+                throw runtime_error("Ingreso un tipo de dato inválido");
+            }
+            else{
+                cout << "Ingreso una opción incorrecta. Vuelva a intentarlo"<<endl;
+            }
         }
+        catch(const runtime_error& f){
+            cout << f.what()<<endl;
+        }
+    }
 
 }

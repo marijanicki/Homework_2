@@ -3,7 +3,7 @@
 #include <iomanip>
 using namespace std;
 
-class relog{
+class reloj{
     private:
         int hour;
         int min;
@@ -11,7 +11,7 @@ class relog{
         string period;
 
     public:
-        relog(int hour = 0, int min = 0, int sec = 0, string per = "a.m."); //constructor default
+        reloj(int hour = 0, int min = 0, int sec = 0, string per = "a.m."); //constructor default
         
         void sethour(int h);
         void setmin(int m);

@@ -1,10 +1,10 @@
-#include "relog.hpp"
+#include "reloj.hpp"
 #include <iostream>
 #include <string> 
 #include <iomanip>
 using namespace std;
 
-relog::relog(int hour, int min, int sec, string period){
+reloj::reloj(int hour, int min, int sec, string period){
     //Acomodar los parametros por si alguno sobrepasa los 60 o es incorrecto
     if(sec>=60){
         min = min + (sec/60);
@@ -33,34 +33,34 @@ relog::relog(int hour, int min, int sec, string period){
 };
 
 //SETTERS
-void relog::sethour(int h){
+void reloj::sethour(int h){
     hour = h;
 }
-void relog::setmin(int m){
+void reloj::setmin(int m){
     min = m;
 }
-void relog::setsec(int s){
+void reloj::setsec(int s){
     sec = s;
 }
-void relog::setper(string per){
+void reloj::setper(string per){
     period = per;
 }
 
 //GETTERS
-int relog::gethour(){
+int reloj::gethour(){
     return hour;
 }
-int relog::getmin(){
+int reloj::getmin(){
     return min;
 }
-int relog::getsec(){
+int reloj::getsec(){
     return sec;
 }
-string relog::getper(){
+string reloj::getper(){
     return period;
 }
 
-void relog::print_time(){
+void reloj::print_time(){
     if(hour == 0 && min == 0 && sec == 0 && period == "a.m."){
         cout << hour <<"h,"<< min <<"m,"<< sec <<"s "<<period<< endl;
     }
@@ -69,7 +69,7 @@ void relog::print_time(){
     }
 }
 
-void relog::without_per(){
+void reloj::without_per(){
     if(period == "p.m." && hour != 12){
         hour = hour +12;
         period = "";

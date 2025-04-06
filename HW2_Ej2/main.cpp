@@ -5,6 +5,30 @@
 
 using namespace std;
 
+/*
+La relación que existe entre los objetos es de asociación. Esto es debido a que 
+se encuentran relacionados pero no existe un ownership. Es decir, si eliminaramos 
+a un estudiante el curso no dejaría de existir. Y viceversa, si eliminamos un curso 
+el estudiante no deja de existir, si así fuera se lo eliminaría de todos los otros
+cursos al que esta inscripto.
+*/
+
+/*
+Hice una copia deep copy. Esto es debido a que estamos alocando memoria y si nosotros 
+copiamos los estudiantes de un curso a otro simplemente apuntando a ellos mediante
+punteros pasaría que si yo elimino un estudiante se eliminaría de los dos. Y nosotros
+lo que buscamos es simplemente copiar como se encuentra el curso en ese momento que se
+copia y luego simplemente que sean dos cursos independientes que puedan inscribir y 
+desinscribir a los estudiantes que quieran. Si se hiciera por referencia sucederia lo que
+mencione anteriormente que estarían ligadas en cuanto a sus alumnos y siempre serían iguales
+en cuanto a desinscribir.
+
+Para realizarlo lo que hice fue hacer un constructor especifico para la copia.
+A diferencia del constructor que uso para todas los objetos curso, a este le pido 
+a su vez el objeto curso que quiero copiar. En la implementación del constructor
+lo que hice fue 
+*/
+
 void show_curso(vector <curso> lista_cursos){
     cout << "Elija a que curso desea inscribirlo"<<endl;
     for(size_t i = 0; i<lista_cursos.size();i++){
