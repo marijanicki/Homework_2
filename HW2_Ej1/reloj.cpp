@@ -34,6 +34,8 @@ reloj::reloj(int hour, int min, int sec, string period){
 
 //SETTERS
 void reloj::sethour(int hour){
+    this->sec = 0;
+    this->min = 0;
     if(hour>=24){
         throw runtime_error("Ingreso de horario inválido, excedido en horas\n");
     }
@@ -48,44 +50,59 @@ void reloj::sethour(int hour){
         this->hour = hour;
     }
 }
-void reloj::setmin(int min){
-    if(min>=60){
-        this->hour = hour + (min/60);
-        this->min = min%60;
+void reloj::setmin(int m){
+    this->sec = 0;
+    int temp_m = 0;
+    int temp_h = 0;
+
+    if(m>=60){
+        temp_h += (m/60);
+        temp_m = m%60;
     }
-    if(hour>=24){
+    if(temp_h>=24){
         throw runtime_error("Ingreso de horario inválido, excedido en horas\n");
     }
     
-    if(hour == 12){
+    if(temp_h == 12){
         this->period = "p.m.";
     }
-    else if(hour>12){
-        this->hour = (hour % 12);
+    else if(temp_h>12){
+        this->hour = (temp_h % 12);
         this->period = "p.m.";
     }
+    else{
+        this->hour = temp_h;
+    }
+    this->min = temp_m;
 }
 void reloj::setsec(int s){
-    
+    int temp_s = 0;
+    int temp_m = 0;
+    int temp_h = 0;
     if(s>=60){
-        this->min = min + (sec/60);
-        this->sec = sec %60;
+        temp_m += (s/60);
+        temp_s = s %60;
     }
-    if(min>=60){
-        this->hour = hour + (min/60);
-        this->min = min%60;
+    if(temp_m>=60){
+        temp_h += (temp_m/60);
+        temp_m = temp_m%60;
     }
-    if(hour>=24){
+    if(temp_h>=24){
         throw runtime_error("Ingreso de horario inválido, excedido en horas\n");
     }
     
-    if(hour == 12){
+    if(temp_h == 12){
         this->period = "p.m.";
     }
-    else if(hour>12){
-        this->hour = (hour % 12);
+    else if(temp_h>12){
+        this->hour = (temp_h % 12);
         this->period = "p.m.";
     }
+    else{
+        this->hour = temp_h;
+    }
+    this->min = temp_m;
+    this->sec = temp_s;
 }
 void reloj::setper(string per){
     period = per;
